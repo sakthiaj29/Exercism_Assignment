@@ -1,0 +1,45 @@
+class NeedForSpeed {
+    int speed;
+    int batteryDrain;
+    int distance;
+    int battery;
+    NeedForSpeed(int speed, int batteryDrain) {
+        this.speed=speed;
+       this.batteryDrain=batteryDrain;
+        battery=100;
+    }
+
+    public boolean batteryDrained() {
+        if(battery!=0){
+            return false;
+        }
+        return true;
+    }
+
+    public int distanceDriven() {
+        return distance;
+    }
+
+    public void drive() {
+        if( battery>=batteryDrain){
+            battery-=batteryDrain;
+            distance+=speed;
+        }
+    }
+
+    public static NeedForSpeed nitro() {
+        return new NeedForSpeed(50,4);
+    }
+}
+
+class RaceTrack {
+    int distance;
+    RaceTrack(int distance) {
+       this.distance=distance;
+    }
+
+    public boolean tryFinishTrack(NeedForSpeed car) {
+       int maxDistancePossible = car.battery / car.batteryDrain * car.speed;
+        return  maxDistancePossible >= distance;
+    }
+}
